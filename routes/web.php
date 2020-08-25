@@ -19,15 +19,51 @@ Route::get('/', function () {
 
 Route::get('/model', function (){
 
-  //  $products = App\Product::all();
+    // Criar uma loja
 
-    $user = User::find(1);
-    $user->name = 'Odair';
+ #   $user = App\User::find(10);
+ #   $store =  $user->store()->create([
+ #       'name' => 'Loja Teste',
+ #       'description'=>' Loja Teste dasas',
+ #      'mobile_phone' => 'XXX-XXXX-XXX',
+ #       'phone' => 'XX-XXXX-XXX',
+ #       'slug' => 'Loja-Teste'
+ #  ]);
+#
+ #   dd($store);
+    // Criar um produto para uma loja
 
-    $user->save();
-    //  return User::all(); // Retorna todos os user do banco
-   // return User::where('name', 'Odair')->get(); // Retorna todos os user com o nome em questão.
-  //  return $user->save();
+# $store = App\Store::find(41);
+# $product =  $store->products()->create([
+#     'name'=>'Celular LG K40S',
+#     'description' => 'Melhor celular custo beneficio',
+#     'body'=>'Qualquer coisa',
+#     'price' => 2900.90,
+#     'slug'=>'celular-lg-k40s'
+# ]);
 
-    return User::paginate(10); // Para retorna a quantidade de itens por pagina e passando quantos itens queremos.
+# dd($product);
+
+    // Criar Categorias
+
+//   App\Category::create([
+//       'name'=>'Celular',
+//       'descriptions' => null,
+//       'slug'=>'celular'
+//   ]);
+//   App\Category::create([
+//       'name'=>'Games',
+//       'descriptions' => null,
+//       'slug'=>'games'
+//   ]);
+
+    //  Adicionar um produto para uma categoria.
+
+    $product = App\Product::find(49);
+    $product->categories()->attach([1]);
+
+
+    return \App\Category::all();
+
+
 });
